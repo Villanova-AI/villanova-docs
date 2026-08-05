@@ -1,0 +1,239 @@
+# Configure GPU Support in a Target Environment
+
+This guide explains how to validate NVIDIA GPU support on a K3s target environment and how to enable GPU workloads for Villanova deployments.
+
+## Prerequisites
+
+- A K3s target environment already configured for Villanova.
+- An NVIDIA GPU installed on at least one node.
+- NVIDIA drivers already installed on the host.
+- `kubectl` access to the cluster.
+- `helm` installed on the administration host.
+
+## 1. Verify GPU Support on the Host
+
+Check that the node sees the GPU:
+
+```bash
+nvidia-smi
+```
+
+Expected result: the command prints the GPU model, driver version, and CUDA version without errors.
+
+Verify that the NVIDIA container toolkit is available:
+
+```bash
+nvidia-container-toolkit --version
+```
+
+Expected result: the command prints the installed toolkit version.
+
+## 2. Verify the NVIDIA Runtime in K3s
+
+Check that the NVIDIA runtime is registered in the active containerd configuration:
+
+```bash
+  sudo grep -A3 "nvidia" /var/lib/rancher/k3s/agent/etc/containerd/config.toml
+```
+
+Expected result:
+
+```toml
+[plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.'nvidia']
+[plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.'nvidia'.options]
+  BinaryName = "/usr/bin/nvidia-container-runtime"
+```
+
+If the runtime is missing, also inspect the K3s containerd template:
+
+```bash
+sudo cat /var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl
+sudo ls -la /etc/containerd/conf.d/
+```
+
+On K3s installations that use `imports = ["/etc/containerd/conf.d/*.toml"]`, an empty `/etc/containerd/conf.d/` directory can prevent the NVIDIA runtime from being configured as expected.
+
+## 3. Set the Default Runtime in K3s
+
+Update the K3s configuration file:
+
+```yaml
+write-kubeconfig-mode: "0600"
+disable:
+  - servicelb
+tls-san:
+  - "<PUBLIC_IP>"
+node-name: "<NODE_NAME>"
+default-runtime: nvidia
+```
+
+File: `/etc/rancher/k3s/config.yaml`
+
+Restart K3s after the change.
+
+## 4. Configure CDI Classes and Containerd Runtime
+
+Create the CDI directory and generate both workload and management CDI classes:
+
+```bash
+sudo mkdir -p /etc/cdi
+
+# Workload class
+sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
+
+# Management class (used internally by the device plugin)
+sudo nvidia-ctk cdi generate --vendor=management.nvidia.com --class=gpu --output=/etc/cdi/management.yaml
+```
+
+Verify both classes are present:
+
+```bash
+sudo nvidia-ctk cdi list
+```
+
+Expected result: entries for both `nvidia.com/gpu=*` and `management.nvidia.com/gpu=*` are listed.
+
+Ensure the NVIDIA runtime stanza exists in the K3s containerd template:
+
+```bash
+sudo cp /var/lib/rancher/k3s/agent/etc/containerd/config.toml \
+  /var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl
+
+sudo tee -a /var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl > /dev/null <<'EOF'
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
+runtime_type = "io.containerd.runc.v2"
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia.options]
+BinaryName = "/usr/bin/nvidia-container-runtime"
+EOF
+```
+
+Restart K3s:
+
+```bash
+sudo systemctl restart k3s
+```
+
+## 5. Create the NVIDIA RuntimeClass
+
+Apply the runtime class used by GPU workloads:
+
+```bash
+kubectl apply -f - <<'EOF'
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: nvidia
+handler: nvidia
+EOF
+```
+
+Verify that it exists:
+
+```bash
+kubectl get runtimeclass
+```
+
+Expected result: a `RuntimeClass` named `nvidia` is listed.
+
+## 6. Install the NVIDIA GPU Operator
+
+Add the NVIDIA Helm repository and update the index:
+
+```bash
+helm repo add nvidia https://helm.ngc.nvidia.com/nvidia
+helm repo update
+```
+
+Install the operator with K3s-friendly settings:
+
+```bash
+helm install --wait --generate-name \
+  -n gpu-operator --create-namespace \
+  nvidia/gpu-operator \
+  --version=v26.3.3 \
+  --set driver.enabled=false \
+  --set cdi.enabled=true \
+  --set cdi.default=true \
+  --set toolkit.env[0].name=CONTAINERD_RUNTIME_CLASS \
+  --set toolkit.env[0].value=nvidia
+```
+
+This configuration assumes the NVIDIA driver is already managed on the host and only the Kubernetes GPU components need to be deployed.
+
+## 7. Install the NVIDIA Device Plugin
+
+If you are not using the full GPU Operator stack, install the NVIDIA device plugin directly:
+
+```bash
+helm repo add nvdp https://nvidia.github.io/k8s-device-plugin
+helm repo update
+helm install nvdp nvdp/nvidia-device-plugin --namespace kube-system --create-namespace
+```
+
+## 8. Validate GPU Scheduling
+
+Run a test workload:
+
+```bash
+kubectl run gpu-test --rm -it --restart=Never \
+  --image=nvidia/cuda:12.4.0-base-ubuntu22.04 \
+  --overrides='{"spec":{"runtimeClassName":"nvidia"}}' \
+  -- nvidia-smi
+```
+
+Expected result: the pod starts successfully and prints `nvidia-smi` output from inside the container.
+
+You can also validate allocatable GPU resources:
+
+```bash
+kubectl get nodes -o json | jq '.items[].status.allocatable'
+```
+
+Expected result: at least one node exposes `nvidia.com/gpu` in its allocatable resources.
+
+To specifically check for the GPU allocatable key:
+
+```bash
+kubectl get nodes -o json | jq '.items[].status.allocatable | select(."nvidia.com/gpu" != null)'
+```
+
+## Troubleshooting
+
+### Error: `Unknown runtime handler nvidia`
+
+Check these items:
+
+- `default-runtime: nvidia` is present in `/etc/rancher/k3s/config.yaml`.
+- The `RuntimeClass` named `nvidia` exists.
+- The NVIDIA runtime is present in `/var/lib/rancher/k3s/agent/etc/containerd/config.toml`.
+- `/etc/containerd/conf.d/` is not empty if the K3s template imports configuration from that path.
+
+### GPU Operator does not become ready
+
+If the operator gets stuck on `dcgm-exporter`, disable DCGM components:
+
+```bash
+kubectl patch clusterpolicy cluster-policy --type merge \
+  -p '{"spec":{"dcgm":{"enabled":false},"dcgmExporter":{"enabled":false}}}'
+```
+
+Then re-check the operator pods:
+
+```bash
+kubectl get pods -n gpu-operator
+```
+
+### Reinstall the operator
+
+If you need a clean reinstall:
+
+```bash
+helm uninstall -n gpu-operator $(helm list -n gpu-operator -q)
+kubectl delete pods -n gpu-operator --all --grace-period=0 --force
+```
+
+Re-run the install command after cleanup.
+
+::: {.callout-note}
+Keep API tokens, cloud credentials, and other secrets out of the documentation. Use placeholders such as `<CLOUDFLARE_API_TOKEN>` in examples.
+:::

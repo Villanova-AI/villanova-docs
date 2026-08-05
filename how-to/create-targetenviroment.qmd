@@ -1,0 +1,290 @@
+# How-To: Create a Target Environment in Villanova Platform
+
+This guide explains how to prepare a Kubernetes target environment for Villanova workloads.
+
+## Assumptions
+A target environment is a Kubernetes cluster that is reachable from the Villanova Platform. The target environment must have a public IP address and a wildcard DNS record for the domain used by the workloads.
+
+## Prerequisites
+
+- An existing K3s cluster provisioned with Ansible.
+- Traefik installed as ingress controller.
+- `kubectl` configured to access the cluster.
+- Access to DNS configuration for your domain.
+
+## 1. MetalLB 
+
+MetaLB is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols. It allows you to assign external IP addresses to services of type `LoadBalancer`.
+In Villanova deployments, Traefik is configured as a `LoadBalancer` service. To expose the service to the internet, you need to configure MetalLB in your target environment.
+MetalLB assigns an external IP to the Traefik `LoadBalancer` service.
+
+Verify that Traefik gets an external IP:
+
+```bash
+kubectl get svc -A
+```
+
+Expected result: the `kube-system/traefik` service has type `LoadBalancer` with an `EXTERNAL-IP`.
+
+### Install MetalLB (only if not configured)
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.16.1/config/manifests/metallb-frr-k8s.yaml
+```
+
+### Configure the IP address pool
+
+Create a file named `metallb-config.yaml`:
+
+```yaml
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: production-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    - 93.119.169.188/32
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: l2-advert
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - production-pool
+```
+
+Apply the configuration:
+
+```bash
+kubectl apply -f metallb-config.yaml
+```
+
+## 2. DNS
+Target Environments can have a wildcard DNS record pointing to the Traefik external IP. This allows Villanova applications to be accessed via subdomains of your domain.
+Each DNS provider has its own procedure for creating a wildcard DNS record. Consult your provider's documentation for instructions, or use the following example for Cloudflare:
+Create a wildcard DNS record pointing to the Traefik external IP.
+
+### Cloudflare Configuration
+- Log in to your Cloudflare account.
+- Select the domain you want to configure.
+- Go to the DNS settings.
+- Add a new record:
+- Type: `A`
+- Name: `*`
+- IPv4 address: `<Traefik External IP>` 
+- TTL: `Auto`
+
+
+::: {.callout-important}
+Unflag Proxy if select, use DNS only
+:::
+
+Example:
+
+- `*.edge1.villanova.ai -> 93.119.169.188`
+
+Quick test:
+
+- Open `https://test.edge1.villanova.ai/` in a browser.
+
+## 3. Manage TLS Certificates with cert-manager
+
+Check if cert-manager is installed:
+```bash
+kubectl get pods -n cert-manager
+```
+
+### Install Cert-Manager (if not installed)
+
+```bash
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.2/cert-manager.yaml
+```
+### Create a ClusterIssuer for Let's Encrypt
+
+#### Version 1: Use DNS-01 challenge (recommended)
+Create a token in Cloudflare with permissions to manage DNS records. 
+Set 
+Then create a Kubernetes secret with the token:
+
+```bash
+kubectl create secret generic cloudflare-api-token-secret \
+  --from-literal=api-token='<CLOUDFLARE_API_TOKEN>' \
+  --namespace cert-manager
+```
+Apply the configuration:
+
+```yaml
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: snicotra@villanova.ai
+    privateKeySecretRef:
+      name: letsencrypt-prod-key
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token-secret
+              key: api-token
+        selector:
+          dnsZones:
+            - "villanova.ai"
+```
+
+```bash
+kubectl apply -f letsencrypt.yaml
+```
+
+#### Version 2: Use HTTP-01 challenge (default)
+Create a `ClusterIssuer` for Let's Encrypt in a file named `letsencrypt.yaml`:
+
+```yaml
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: tuamail@esempio.com
+    privateKeySecretRef:
+      name: letsencrypt-prod-key
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token-secret
+              key: api-token
+        selector:
+          dnsZones:
+            - "villanova.ai"
+```
+Apply it:
+
+```bash
+kubectl apply -f letsencrypt.yaml
+```
+
+Verify 
+```bash
+kubectl get secrets -n cert-manager
+```
+
+## 4. Create the Target Namespace
+In the target environment, create a namespace for Villanova workloads:
+
+```bash
+kubectl create namespace villanova-edge
+```
+
+## 5. Configure Service Accounts and Permissions
+
+### Create service account for operations API
+
+```bash
+kubectl create serviceaccount operation-api -n default
+kubectl create clusterrolebinding operation-api-sa-admin \
+	--clusterrole=cluster-admin \
+	--serviceaccount=default:operation-api
+```
+
+Generate a token:
+
+```bash
+kubectl create token operation-api --duration 200000h
+```
+
+::: {.callout-note}
+Token will be used in the Villanova UI while creating the target environment.
+:::
+
+### Create service account for Villanova workloads
+```yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: entando-workload
+  namespace: villanova-edge
+automountServiceAccountToken: true
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: rollout-reader
+  namespace: villanova-edge
+rules:
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets","statefulsets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: secret-manager
+  namespace: villanova-edge
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "create", "update", "patch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rollout-reader-binding
+  namespace: villanova-edge
+subjects:
+- kind: ServiceAccount
+  name: entando-workload
+  namespace: villanova-edge
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: rollout-reader
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: secret-manager-binding
+  namespace: villanova-edge
+subjects:
+  - kind: ServiceAccount
+    name: entando-workload
+    namespace: villanova-edge
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: secret-manager
+```
+Apply the configuration:
+
+```bash
+kubectl apply -f entando-workload.yaml
+```
+
+## 6. Create the Target Environment from the UI
+
+After infrastructure setup is complete, create the target environment from the Villanova UI.
+
+Use these values:
+
+- Name: `Villanova Edge 1`
+- Environment type: `production`
+- Cluster Address: (`https://<external-ip>:6443`)
+- Namespace (`villanova-edge`)
+- Service account token (`operation-api`)
+
+in Advanced settings, set:
+- Domain (for example `edge1.villanova.ai`)
+
+If connection is successful, the target environment will be created and ready to deploy workloads.

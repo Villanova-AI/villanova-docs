@@ -1,0 +1,27 @@
+
+project:
+  type: book
+
+book:
+  title: "Villanova Documentation"
+  chapters:
+    - index.qmd
+    - part: Architecture
+      chapters:
+        - architecture/overview.qmd
+    - part: Platform
+      chapters:
+        - platform/entando.qmd
+    - part: Catalog
+      chapters:
+        - catalog/overview.qmd
+        - catalog/m2.qmd
+    - part: How-To
+      chapters:
+        - how-to/configure-gpu-target-env.qmd
+        - how-to/create-blueprint.qmd
+        - how-to/create-targetenviroment.qmd
+
+format:
+  html: default
+  pdf: default

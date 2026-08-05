@@ -1,0 +1,7 @@
+# M2 - Video Anonymization
+
+## Purpose
+
+## Inputs
+
+## Outputs
