@@ -1,0 +1,32 @@
+---
+title: "MX - Module Name Component"
+---
+
+## Overview
+
+Module MX - Module Name is a reusable Packaged Business Capability (PBC) of the Villanova project.
+
+[Add a high-level business overview here]
+
+## Business Capabilities
+
+- [Capability 1]
+- [Capability 2]
+- [Capability 3]
+- [Capability 4]
+- [Capability 5]
+
+## Business Value
+
+- [Value 1]
+- [Value 2]
+- [Value 3]
+- [Value 4]
+
+## Ethical and Regulatory Considerations
+
+- [Human oversight considerations]
+- [Transparency considerations]
+- [Risk management considerations]
+- [Data governance considerations]
+- [Compliance alignment, including AI Act where applicable]

@@ -1,0 +1,13 @@
+﻿---
+title: "M4 - Data Augmentation"
+---
+
+## Overview
+
+Module M4 is a data-centric AI component for controlled synthetic data generation. It augments textual datasets using generative models through configurable strategies for expansion, balancing, and paraphrasing.
+
+## M4 Documents
+
+- [M4 - Component Description](m4-component-description.qmd)
+- [M4 - Standalone Module](m4-standalone-module.qmd)
+- [M4 - Platform Module](m4-platform-module.qmd)

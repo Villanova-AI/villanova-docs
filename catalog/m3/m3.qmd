@@ -1,0 +1,13 @@
+﻿---
+title: "M3 - Speech Synthesis"
+---
+
+## Overview
+
+Module M3 provides multilingual text-to-speech capabilities through a unified and configurable pipeline. It combines language detection, translation, and speech synthesis to produce multilingual audio outputs for integration and experimentation scenarios.
+
+## M3 Documents
+
+- [M3 - Component Description](m3-component-description.qmd)
+- [M3 - Standalone Module](m3-standalone-module.qmd)
+- [M3 - Platform Module](m3-platform-module.qmd)

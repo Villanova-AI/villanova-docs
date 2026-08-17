@@ -1,0 +1,23 @@
+﻿---
+title: "M10 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M10 - Code Auto-completion.
+
+## Technical Scope
+
+- Evaluated with Villanova-2B-2512-Preview under controlled inference parameters
+- Average response time around half a second in reported tests
+- Strength on simple algorithmic tasks and limitations on complex context-heavy completions
+- Max context length in current setup: 4096 tokens
+- Designed for developer assistance and experimentation scenarios
+
+## Run Guidance
+
+Use OpenAI-compatible completion endpoint configured for Villanova-2B deployment
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

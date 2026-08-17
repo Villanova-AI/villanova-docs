@@ -1,0 +1,23 @@
+﻿---
+title: "M7 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M7 - Natural Language Processing.
+
+## Technical Scope
+
+- Python runtime with requirements-managed dependencies
+- Execution through Python module entry points
+- Supports raw text and text-file based input
+- Environment-variable or .env-based endpoint configuration
+- Focused on non mission-critical workloads
+
+## Run Guidance
+
+python -m source.ner_component --text "..." and python -m source.sa_component --text "..."
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

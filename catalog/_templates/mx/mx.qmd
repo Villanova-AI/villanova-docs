@@ -1,0 +1,9 @@
+---
+title: "MX - Module Name"
+---
+
+## MX Documents
+
+- [MX - Component Description](mx-component-description.qmd)
+- [MX - Standalone Module](mx-standalone-module.qmd)
+- [MX - Platform Module](mx-platform-module.qmd)

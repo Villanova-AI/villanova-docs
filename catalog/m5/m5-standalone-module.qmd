@@ -1,0 +1,23 @@
+﻿---
+title: "M5 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M5 - Anomaly Detection.
+
+## Technical Scope
+
+- Python-based command-line and programmatic integration
+- Dataset ingestion from structured formats such as JSON and CSV
+- Pipeline stages include preparation, prompt construction, LLM analysis, and aggregation
+- Supports human-in-the-loop review for flagged records
+- Designed for validation and monitoring, not final automated decision making
+
+## Run Guidance
+
+python -m <module_entry> --input <dataset> --output <annotated_dataset>
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

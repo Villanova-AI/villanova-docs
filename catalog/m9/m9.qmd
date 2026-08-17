@@ -1,0 +1,13 @@
+﻿---
+title: "M9 - Document Summarization"
+---
+
+## Overview
+
+Module M9 provides automatic text summarization for raw text or UTF-8 files. It returns normalized JSON outputs including concise summary content and metadata to support downstream automation.
+
+## M9 Documents
+
+- [M9 - Component Description](m9-component-description.qmd)
+- [M9 - Standalone Module](m9-standalone-module.qmd)
+- [M9 - Platform Module](m9-platform-module.qmd)

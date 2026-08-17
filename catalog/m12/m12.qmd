@@ -1,0 +1,13 @@
+﻿---
+title: "M12 - API Recommendation"
+---
+
+## Overview
+
+Module M12 recommends Python libraries from code snippets or task descriptions. It supports direct generation and catalog-constrained recommendation with optional RAG-based context narrowing.
+
+## M12 Documents
+
+- [M12 - Component Description](m12-component-description.qmd)
+- [M12 - Standalone Module](m12-standalone-module.qmd)
+- [M12 - Platform Module](m12-platform-module.qmd)

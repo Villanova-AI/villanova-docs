@@ -1,0 +1,37 @@
+﻿---
+title: "M6 - Recommendation Systems Component"
+---
+
+## Overview
+
+Module M6 is a recommender component that can be exposed as OpenAPI or MCP service and used by language-model-driven interfaces. It currently targets Wikipedia edit recommendation with domain extension capability through additional training sets.
+
+## Business Capabilities
+
+- Domain-independent recommender architecture
+- Initial use case on Simple English Wikipedia edit recommendation
+- Natural-language interaction through LLM-compatible interfaces
+- REST and MCP exposure for tool interoperability
+- Explainable recommendation support
+
+## Typical Adoption Scenarios
+
+- M6 supports pilot adoption in business workflows where Recommendation Systems is required.
+- The module can be integrated in composable platform journeys and assisted operations.
+- Teams can start in standalone mode and scale to governed platform deployment.
+
+## Business Value
+
+- Reusable packaged capability that reduces custom implementation effort.
+- Faster solution design by separating business configuration from runtime complexity.
+- Better consistency across teams through a shared module contract and governance model.
+
+## Ethical and Regulatory Considerations
+
+- Human oversight remains required, especially for regulated or high-impact use cases.
+- Organizations should apply transparency, traceability, and access controls for accountable operation.
+- Risk controls should align with applicable regulatory obligations, including AI Act-related requirements where relevant.
+
+## Repository
+
+https://github.com/Villanova-AI/villanova-genai-components-m6-2025

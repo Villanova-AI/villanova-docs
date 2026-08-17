@@ -1,0 +1,23 @@
+﻿---
+title: "M14 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M14 - Hybrid Retrieval and RAG.
+
+## Technical Scope
+
+- Agata Engine implemented in Python with YAML-driven configuration
+- Agata Manager implemented in Java Spring Boot
+- Designed for internal engine deployment with manager as exposed integration layer
+- Optional Keycloak integration for authentication and authorization
+- Deployment quality depends on indexing strategy and backend service capacity
+
+## Run Guidance
+
+Integrate through Agata Manager secure APIs in controlled deployment environments
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

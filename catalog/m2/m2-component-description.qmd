@@ -1,0 +1,43 @@
+---
+title: "M2 - Video Anonymization Component"
+---
+
+## Overview
+
+Module M2 - Video Anonymization is a reusable Packaged Business Capability (PBC) of the Villanova project.
+It enables organizations to protect personal and sensitive information in video streams and recordings through configurable anonymization policies.
+
+M2 is designed to support privacy-by-design adoption in business and public-sector scenarios where video data must be processed responsibly.
+
+## Business Capabilities
+
+M2 provides the following high-level capabilities:
+
+- Automated anonymization of sensitive visual elements in video content
+- Policy-driven configuration for different risk and compliance contexts
+- Admin-driven configuration with no technical skills required for standard setup
+- Reusable integration in composable application ecosystems
+- Delivery as a standalone capability or embedded module in larger workflows
+
+## Business Value
+
+M2 is intended to support organizations that need to:
+
+- Reduce privacy and compliance risk in video processing pipelines
+- Standardize anonymization policies across teams and use cases
+- Accelerate time-to-value for compliant video analytics and archiving
+- Enable non-technical administrators to manage anonymization behavior
+
+## Ethical and Regulatory Considerations
+
+M2 follows a responsible-by-design approach aligned with data protection and AI governance expectations.
+
+Key principles include:
+
+- Data minimization and purpose limitation in video processing
+- Human oversight for policy definition and exception handling
+- Transparency on anonymization behavior and operational limitations
+- Traceability of configuration and policy changes
+- Support for compliance workflows in regulated environments
+
+Each deployment should be validated against applicable legal and sector-specific obligations.

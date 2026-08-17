@@ -1,0 +1,23 @@
+﻿---
+title: "M15 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M15 - Retrieval Engine Self-Tuning.
+
+## Technical Scope
+
+- Python 3.9+ modular codebase with configuration-driven execution
+- Three core modules: data_auto_gen, cross_enc_exp, auto_eval
+- Supports integration into CI/CD or scheduled experiment pipelines
+- Evaluation and optimization depend on endpoint quality, model selection, and hardware resources
+- Designed for controlled experimentation before large-scale deployment
+
+## Run Guidance
+
+Run module scripts and pipelines from repository entry points with external endpoint configuration
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

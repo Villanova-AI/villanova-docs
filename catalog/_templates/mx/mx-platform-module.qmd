@@ -1,0 +1,5 @@
+---
+title: "MX - Platform Module"
+---
+
+[Add platform integration notes here]

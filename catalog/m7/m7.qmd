@@ -1,0 +1,13 @@
+﻿---
+title: "M7 - Natural Language Processing"
+---
+
+## Overview
+
+Module M7 provides two NLP capabilities: Named Entity Recognition and Sentiment Analysis. It transforms unstructured text into structured insights for analytics and decision support.
+
+## M7 Documents
+
+- [M7 - Component Description](m7-component-description.qmd)
+- [M7 - Standalone Module](m7-standalone-module.qmd)
+- [M7 - Platform Module](m7-platform-module.qmd)

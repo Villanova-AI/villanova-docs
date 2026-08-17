@@ -1,0 +1,37 @@
+---
+title: "MX - Standalone Module"
+---
+
+## Purpose
+
+[Describe the standalone scope of the module]
+
+## What This Demo Covers
+
+- [Demo scope 1]
+- [Demo scope 2]
+- [Demo scope 3]
+
+## Technical Scope
+
+- [Technical scope 1]
+- [Technical scope 2]
+- [Technical scope 3]
+- [Technical scope 4]
+
+## Prerequisites
+
+1. [Prerequisite 1]
+2. [Prerequisite 2]
+3. [Prerequisite 3]
+
+## Run Example
+
+```bash
+# Replace with the module-specific command
+python3 ./source/main.py --help
+```
+
+## Expected Outcome
+
+[Describe expected output and validation criteria]

@@ -1,0 +1,23 @@
+﻿---
+title: "M9 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M9 - Document Summarization.
+
+## Technical Scope
+
+- Python runtime with requirements-based setup
+- Endpoint mode via Villanova endpoint settings or OpenAI API key
+- Input support for raw text and UTF-8 file ingestion
+- Intended for prototyping and integration workflows
+- Does not include extractive citation grounding or factuality verification
+
+## Run Guidance
+
+python -m source.summarization_component --input_file text_example.txt
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

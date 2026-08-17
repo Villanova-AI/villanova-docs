@@ -1,0 +1,13 @@
+﻿---
+title: "M11 - Code Summarization"
+---
+
+## Overview
+
+Module M11 is a proof-of-concept multilingual code summarization component. It produces concise 3-5 sentence explanations for source snippets across Python, C/C++, and JavaScript.
+
+## M11 Documents
+
+- [M11 - Component Description](m11-component-description.qmd)
+- [M11 - Standalone Module](m11-standalone-module.qmd)
+- [M11 - Platform Module](m11-platform-module.qmd)

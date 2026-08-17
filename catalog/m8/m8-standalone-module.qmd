@@ -1,0 +1,23 @@
+﻿---
+title: "M8 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M8 - Time Series Forecasting.
+
+## Technical Scope
+
+- Frontend: Angular served via Node.js
+- Backend: FastAPI on Python 3.12
+- Structured CSV input with temporal and numeric columns
+- Optional Docker deployment and reverse proxy/HTTPS integration
+- Designed for analytics workflows and not certified for mission-critical usage
+
+## Run Guidance
+
+Use backend /datasets, /algorithms, /predict endpoints and frontend UI according to module repositories
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

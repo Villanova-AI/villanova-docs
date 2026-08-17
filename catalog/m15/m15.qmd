@@ -1,0 +1,13 @@
+﻿---
+title: "M15 - Retrieval Engine Self-Tuning"
+---
+
+## Overview
+
+Module M15 operationalizes self-tuning retrieval optimization for RAG systems. It links synthetic data generation, reranker fine-tuning, and automated evaluation in a reusable closed-loop workflow.
+
+## M15 Documents
+
+- [M15 - Component Description](m15-component-description.qmd)
+- [M15 - Standalone Module](m15-standalone-module.qmd)
+- [M15 - Platform Module](m15-platform-module.qmd)

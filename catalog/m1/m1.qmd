@@ -1,0 +1,9 @@
+---
+title: "M1 - Text Generation"
+---
+
+## M1 Documents
+
+- [M1 - Component Description](m1-component-description.qmd)
+- [M1 - Standalone Module](m1-standalone-module.qmd)
+- [M1 - Platform Module](m1-platform-module.qmd)

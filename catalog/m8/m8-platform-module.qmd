@@ -1,0 +1,14 @@
+﻿---
+title: "M8 - Platform Module"
+---
+
+## Platform Integration
+
+M8 - Time Series Forecasting can be integrated as a reusable module within the Villanova composable platform architecture.
+
+## Integration Considerations
+
+- Endpoint and credential management across environments.
+- Configuration governance for defaults, limits, and policy constraints.
+- Monitoring, logging, and operational observability controls.
+- Role-based access and traceability for compliance-oriented deployments.

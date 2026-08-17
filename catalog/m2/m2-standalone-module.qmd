@@ -1,0 +1,34 @@
+---
+title: "M2 - Standalone Module"
+---
+
+## Purpose
+
+This standalone version demonstrates the capabilities of Module M2 - Video Anonymization in an isolated and reproducible setup.
+
+## What This Demo Covers
+
+- Standalone execution of the anonymization component
+- Policy-based anonymization behavior
+- Validation-oriented usage for technical demonstrations
+
+## Technical Scope
+
+The standalone module supports:
+
+- Reusable anonymization workflows for business scenarios
+- Configurable policies for anonymization behavior
+- Admin-level configuration through no-code interaction patterns
+- Integration readiness for composable architectures
+
+## Prerequisites
+
+Before running the demo, ensure the following:
+
+1. Runtime dependencies are installed.
+2. Input video data is available locally.
+3. Output storage path is writable.
+
+## Expected Outcome
+
+The standalone run produces anonymized video output according to the selected policy profile, supporting functional validation and integration testing.

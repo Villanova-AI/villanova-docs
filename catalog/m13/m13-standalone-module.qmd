@@ -1,0 +1,23 @@
+﻿---
+title: "M13 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M13 - AI Agent Orchestration.
+
+## Technical Scope
+
+- Engine: Python/FastAPI orchestration runtime configured via YAML
+- UI: web frontend for assistant lifecycle management and testing
+- Manager and services integration patterns for controlled enterprise deployments
+- External dependencies may include search engines, triple stores, object storage, and authentication services
+- Current deliverable stage emphasizes architecture and implementation readiness
+
+## Run Guidance
+
+Deploy Jana UI with connected Jana Engine/Services backends as documented in module repositories
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

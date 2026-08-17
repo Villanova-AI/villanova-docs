@@ -1,0 +1,37 @@
+﻿---
+title: "M10 - Code Auto-completion Component"
+---
+
+## Overview
+
+Module M10 is a proof-of-concept code completion component that generates context-aware Python code suggestions from partial snippets. Validation used a 30-case golden set across five difficulty levels.
+
+## Business Capabilities
+
+- Context-aware code continuation for Python tasks
+- OpenAI-compatible inference integration via vLLM
+- Golden-set evaluation workflow across five difficulty tiers
+- Local development integration with LM Studio and VS Code tooling
+- Baseline metrics reporting including pass, partial, fail, and latency
+
+## Typical Adoption Scenarios
+
+- M10 supports pilot adoption in business workflows where Code Auto-completion is required.
+- The module can be integrated in composable platform journeys and assisted operations.
+- Teams can start in standalone mode and scale to governed platform deployment.
+
+## Business Value
+
+- Reusable packaged capability that reduces custom implementation effort.
+- Faster solution design by separating business configuration from runtime complexity.
+- Better consistency across teams through a shared module contract and governance model.
+
+## Ethical and Regulatory Considerations
+
+- Human oversight remains required, especially for regulated or high-impact use cases.
+- Organizations should apply transparency, traceability, and access controls for accountable operation.
+- Risk controls should align with applicable regulatory obligations, including AI Act-related requirements where relevant.
+
+## Repository
+
+https://huggingface.co/VillanovaAI/Villanova-2B-2512-Preview

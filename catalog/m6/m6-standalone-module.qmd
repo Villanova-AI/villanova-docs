@@ -1,0 +1,23 @@
+﻿---
+title: "M6 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M6 - Recommendation Systems.
+
+## Technical Scope
+
+- Training data extraction from Wikipedia dumps in current implementation
+- Current benchmark indicates recall@1000 around 72 percent in tested setup
+- Designed for research and experimentation use cases
+- Adaptable to other domains with new training datasets
+- Licensed under Apache 2.0 according to module notes
+
+## Run Guidance
+
+Run service via project README commands and query through REST or MCP endpoints
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

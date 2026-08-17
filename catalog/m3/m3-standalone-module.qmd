@@ -1,0 +1,23 @@
+﻿---
+title: "M3 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M3 - Speech Synthesis.
+
+## Technical Scope
+
+- Python 3.11 or 3.12 runtime
+- Streamlit frontend plus standalone CLI scripts
+- Argos Translate integration for multilingual text transformation
+- Configurable OpenAI-compatible or local backend integration depending on model setup
+- Intended for prototyping and integration workflows
+
+## Run Guidance
+
+streamlit run app.py
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

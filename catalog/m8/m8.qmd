@@ -1,0 +1,13 @@
+﻿---
+title: "M8 - Time Series Forecasting"
+---
+
+## Overview
+
+Module M8 is a full-stack time series forecasting solution with an Angular UI and FastAPI backend. It supports dataset inspection, algorithm configuration, prediction execution, and result visualization with confidence intervals.
+
+## M8 Documents
+
+- [M8 - Component Description](m8-component-description.qmd)
+- [M8 - Standalone Module](m8-standalone-module.qmd)
+- [M8 - Platform Module](m8-platform-module.qmd)

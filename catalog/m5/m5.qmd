@@ -1,0 +1,13 @@
+﻿---
+title: "M5 - Anomaly Detection"
+---
+
+## Overview
+
+Module M5 detects anomalous records in structured and textual datasets using generative AI-assisted reasoning. It supports policy-driven anomaly classification and data quality monitoring workflows.
+
+## M5 Documents
+
+- [M5 - Component Description](m5-component-description.qmd)
+- [M5 - Standalone Module](m5-standalone-module.qmd)
+- [M5 - Platform Module](m5-platform-module.qmd)

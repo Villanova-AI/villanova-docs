@@ -1,0 +1,37 @@
+﻿---
+title: "M9 - Document Summarization Component"
+---
+
+## Overview
+
+Module M9 provides automatic text summarization for raw text or UTF-8 files. It returns normalized JSON outputs including concise summary content and metadata to support downstream automation.
+
+## Business Capabilities
+
+- Automatic text summarization with configurable style/length
+- Structured JSON output for pipeline interoperability
+- CLI and Python callable integration
+- Compatibility with Villanova/OpenAI-compatible endpoints and official OpenAI fallback
+- Validation mechanisms for JSON-only response handling
+
+## Typical Adoption Scenarios
+
+- M9 supports pilot adoption in business workflows where Document Summarization is required.
+- The module can be integrated in composable platform journeys and assisted operations.
+- Teams can start in standalone mode and scale to governed platform deployment.
+
+## Business Value
+
+- Reusable packaged capability that reduces custom implementation effort.
+- Faster solution design by separating business configuration from runtime complexity.
+- Better consistency across teams through a shared module contract and governance model.
+
+## Ethical and Regulatory Considerations
+
+- Human oversight remains required, especially for regulated or high-impact use cases.
+- Organizations should apply transparency, traceability, and access controls for accountable operation.
+- Risk controls should align with applicable regulatory obligations, including AI Act-related requirements where relevant.
+
+## Repository
+
+https://github.com/Villanova-AI/villanova-genai-components-m9.git

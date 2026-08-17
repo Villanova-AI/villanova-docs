@@ -1,0 +1,23 @@
+﻿---
+title: "M4 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M4 - Data Augmentation.
+
+## Technical Scope
+
+- Python-based CLI and callable function integration
+- Input dataset support for JSON and CSV
+- Validation and filtering of generated samples before merge/export
+- Execution against project-hosted or external OpenAI-compatible endpoints
+- Intended for controlled experimentation and dataset preparation
+
+## Run Guidance
+
+python -m <module_entry> --input <dataset> --output <augmented_dataset>
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

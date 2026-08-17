@@ -1,0 +1,13 @@
+﻿---
+title: "M10 - Code Auto-completion"
+---
+
+## Overview
+
+Module M10 is a proof-of-concept code completion component that generates context-aware Python code suggestions from partial snippets. Validation used a 30-case golden set across five difficulty levels.
+
+## M10 Documents
+
+- [M10 - Component Description](m10-component-description.qmd)
+- [M10 - Standalone Module](m10-standalone-module.qmd)
+- [M10 - Platform Module](m10-platform-module.qmd)

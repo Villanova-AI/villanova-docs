@@ -1,0 +1,13 @@
+﻿---
+title: "M6 - Recommendation Systems"
+---
+
+## Overview
+
+Module M6 is a recommender component that can be exposed as OpenAPI or MCP service and used by language-model-driven interfaces. It currently targets Wikipedia edit recommendation with domain extension capability through additional training sets.
+
+## M6 Documents
+
+- [M6 - Component Description](m6-component-description.qmd)
+- [M6 - Standalone Module](m6-standalone-module.qmd)
+- [M6 - Platform Module](m6-platform-module.qmd)

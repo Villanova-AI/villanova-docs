@@ -1,0 +1,37 @@
+﻿---
+title: "M8 - Time Series Forecasting Component"
+---
+
+## Overview
+
+Module M8 is a full-stack time series forecasting solution with an Angular UI and FastAPI backend. It supports dataset inspection, algorithm configuration, prediction execution, and result visualization with confidence intervals.
+
+## Business Capabilities
+
+- End-to-end forecasting workflow from dataset selection to chart visualization
+- Support for multiple algorithms such as Prophet and LSTM
+- REST API endpoints for datasets, algorithms, and prediction execution
+- Container-ready deployment for cloud and edge environments
+- Scalable architecture with extensible model integration
+
+## Typical Adoption Scenarios
+
+- M8 supports pilot adoption in business workflows where Time Series Forecasting is required.
+- The module can be integrated in composable platform journeys and assisted operations.
+- Teams can start in standalone mode and scale to governed platform deployment.
+
+## Business Value
+
+- Reusable packaged capability that reduces custom implementation effort.
+- Faster solution design by separating business configuration from runtime complexity.
+- Better consistency across teams through a shared module contract and governance model.
+
+## Ethical and Regulatory Considerations
+
+- Human oversight remains required, especially for regulated or high-impact use cases.
+- Organizations should apply transparency, traceability, and access controls for accountable operation.
+- Risk controls should align with applicable regulatory obligations, including AI Act-related requirements where relevant.
+
+## Repository
+
+https://github.com/villanova-AI/villanova-genai-components-m8-services and https://github.com/Villanova-AI/villanova-genai-components-m8-ui

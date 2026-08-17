@@ -1,0 +1,54 @@
+---
+title: "M1 - Text Generation Component"
+---
+
+## Overview
+
+Module M1 - Text Generation is a reusable Packaged Business Capability (PBC) of the Villanova project.
+It enables organizations to use generic LLM services with specific support for Villanova models, including vertical model variants and fine-tuned configurations.
+
+M1 is designed to accelerate the adoption of Generative AI in business and public-sector scenarios through configurable, reusable capabilities.
+
+## Business Capabilities
+
+M1 provides the following high-level capabilities:
+
+- Business-ready text generation that can be reused across multiple domains
+- Support for Villanova model families, including vertical and fine-tuned variants
+- Admin-driven configuration with no technical skills required for standard setup
+- Flexible governance options, from predefined profiles to advanced behavior controls
+- Delivery as a standalone capability or as part of an end-user chatbot experience
+
+## Business Value
+
+M1 is intended to support organizations that need to:
+
+- Reduce time-to-value in AI service adoption
+- Standardize language generation capabilities across teams and use cases
+- Enable non-technical administrators to manage behavior and policy settings
+- Integrate AI capabilities into composable application ecosystems
+
+## Ethical and Regulatory Considerations
+
+M1 adopts a responsible AI approach aligned with EU regulatory expectations, including the AI Act direction of travel.
+
+Key principles include:
+
+- Human oversight over generated content and operational usage
+- Transparency on AI-assisted interactions and generated outputs
+- Risk-aware configuration and usage policies, based on the target use case
+- Data governance attention for privacy, accountability, and traceability
+- Operational controls to support compliance processes in regulated contexts
+
+M1 does not replace organizational compliance responsibilities. Each deployment should include policy, legal, and risk validation according to the applicable AI Act obligations and sector-specific rules.
+
+## Versioning and License
+
+- Versioning: semantic versioning (v0.x)
+- License: Apache 2.0
+
+## Repository
+
+Reference implementation and materials:
+
+<https://github.com/Villanova-AI/villanova-genai-components-m1.git>

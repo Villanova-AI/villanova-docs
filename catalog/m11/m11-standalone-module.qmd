@@ -1,0 +1,23 @@
+﻿---
+title: "M11 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M11 - Code Summarization.
+
+## Technical Scope
+
+- Reported overall evaluation score: 149/200 (74.5 percent)
+- Better outcomes on English and Spanish than on German in provided validation
+- Known failure patterns include verbose outputs and occasional code echoing instead of summaries
+- Max context length in current setup: 4096 tokens
+- Module intended for experimentation before production hardening
+
+## Run Guidance
+
+Use OpenAI-compatible completion endpoint configured for Villanova-2B deployment
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

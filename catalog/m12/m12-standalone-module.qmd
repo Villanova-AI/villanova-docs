@@ -1,0 +1,23 @@
+﻿---
+title: "M12 - Standalone Module"
+---
+
+## Purpose
+
+This page summarizes the standalone technical scope of M12 - API Recommendation.
+
+## Technical Scope
+
+- RAG uses sentence-transformers all-MiniLM-L6-v2 for top-10 retrieval over 72 catalog entries
+- Best reported scenario: description plus RAG with 30/30 match rate and 75 percent hit rate
+- Limited to Python library ecosystem in current evaluation
+- Max context length in current setup: 4096 tokens
+- Designed as PoC for iterative optimization
+
+## Run Guidance
+
+Use OpenAI-compatible chat completion endpoint with optional retrieved catalog context
+
+## Expected Outcome
+
+A reproducible execution path suitable for technical validation, demonstrations, and staged integration into platform workflows.

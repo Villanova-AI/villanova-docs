@@ -1,0 +1,37 @@
+﻿---
+title: "M13 - AI Agent Orchestration Component"
+---
+
+## Overview
+
+Module M13 (Jana) provides a multi-agent orchestration platform with separated engine and UI components. It enables configuration, governance, and runtime orchestration of RAG-enabled conversational assistants.
+
+## Business Capabilities
+
+- Multi-agent orchestration patterns with decider/executor/narrator roles
+- Blackboard-style shared memory and budget-constrained iterative execution
+- Hybrid retrieval integration with documents, knowledge graphs, web, and attachments
+- UI control plane for bot factory, prompt management, and validation workflows
+- Role-based access control and deployment variant support
+
+## Typical Adoption Scenarios
+
+- M13 supports pilot adoption in business workflows where AI Agent Orchestration is required.
+- The module can be integrated in composable platform journeys and assisted operations.
+- Teams can start in standalone mode and scale to governed platform deployment.
+
+## Business Value
+
+- Reusable packaged capability that reduces custom implementation effort.
+- Faster solution design by separating business configuration from runtime complexity.
+- Better consistency across teams through a shared module contract and governance model.
+
+## Ethical and Regulatory Considerations
+
+- Human oversight remains required, especially for regulated or high-impact use cases.
+- Organizations should apply transparency, traceability, and access controls for accountable operation.
+- Risk controls should align with applicable regulatory obligations, including AI Act-related requirements where relevant.
+
+## Repository
+
+https://github.com/Villanova-AI/villanova-genai-components-m13-engine and https://github.com/Villanova-AI/villanova-genai-components-m13-ui

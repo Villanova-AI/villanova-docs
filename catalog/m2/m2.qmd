@@ -1,0 +1,9 @@
+---
+title: "M2 - Video Anonymization"
+---
+
+## M2 Documents
+
+- [M2 - Component Description](m2-component-description.qmd)
+- [M2 - Standalone Module](m2-standalone-module.qmd)
+- [M2 - Platform Module](m2-platform-module.qmd)

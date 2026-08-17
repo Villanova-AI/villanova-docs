@@ -1,0 +1,119 @@
+---
+title: "M1 - Standalone Module"
+---
+
+## Purpose
+
+This standalone version demonstrates the capabilities of Module M1 - Text Generation as described in Villanova Task 1.7 (AI-based component development).
+
+The demo shows how to generate coherent creative text from:
+
+- A custom prompt
+- Optional seed text
+- Configurable generation parameters
+
+## What This Demo Covers
+
+- CLI-based execution of the text generation component
+- Integration with an OpenAI-compatible Villanova LLM endpoint
+- Reproducible usage for technical validation and demonstrations
+
+## Technical Scope
+
+The standalone module supports:
+
+- Multilanguage text generation for reusable business scenarios
+- Access to Villanova model families, including vertical and fine-tuned variants
+- Admin-level configuration through no-code interaction patterns
+- Reusable integration in composable and domain-specific use cases
+
+## Technical Features
+
+- PBC-based modular architecture for composition and reuse
+- Support for both predefined setup profiles and advanced configuration options
+- No-technical-skill administration for common setup and operational tuning
+- Advanced prompt governance, including custom system prompt definition
+- Optional chatbot delivery bundled with the component
+- Compatibility with cloud, edge, and local environments
+
+## Technical Assumptions
+
+- A LLM endpoint is available and reachable
+- The endpoint exposes an OpenAI-compatible API
+- The organization enables an admin role to configure component behavior
+
+## Technical Constraints
+
+- The component depends on external inference services
+- The module is intended for prototyping and experimental scenarios, while remaining reusable as a composable PBC
+
+## Access and Integration Notes
+
+The component can be exposed as a standalone capability or integrated into larger composable applications.
+Administrative configuration can be performed through predefined settings for standard scenarios and advanced controls for specialized behavior, including system prompt updates.
+When required by the use case, the same component can be packaged and delivered together with a chatbot front end.
+
+## Prerequisites
+
+Before running the demo, ensure the following:
+
+1. Python 3.10+ is installed.
+2. The component source code is available locally.
+3. A Villanova-compatible model endpoint is running and reachable.
+4. Python dependencies are installed.
+
+## Suggested Project Layout
+
+```text
+villanova-genai-components-m1/
+	source/
+		story_generation_component.py
+	examples/
+		story_generation_prompt_it.txt
+		story_example_seed_villanova_it.txt
+```
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+If `requirements.txt` is not provided, install the package used by the script directly.
+
+## Run the Standalone Demo
+
+```bash
+python3 ./source/story_generation_component.py \
+	--endpoint localhost \
+	--port 8003 \
+	--prompt examples/story_generation_prompt_it.txt \
+	--seed examples/story_example_seed_villanova_it.txt \
+	--temperature 0.9 \
+	--max-tokens 512
+```
+
+## Parameters
+
+- `--endpoint`: host name or IP of the LLM service
+- `--port`: exposed API port of the LLM service
+- `--prompt`: input text file with generation instruction
+- `--seed`: optional seed text file
+- `--temperature`: creativity/randomness control
+- `--max-tokens`: maximum generated output length
+
+## Expected Outcome
+
+The command returns generated text based on prompt, seed and model settings.
+This output can be used to validate M1 behavior during functional demonstrations and integration tests.
+
+## Versioning and License
+
+- Versioning: semantic versioning (v0.x)
+- License: Apache 2.0
+
+## Repository
+
+Reference implementation and materials:
+
+<https://github.com/Villanova-AI/villanova-genai-components-m1.git>

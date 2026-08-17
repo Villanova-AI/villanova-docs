@@ -1,0 +1,13 @@
+﻿---
+title: "M13 - AI Agent Orchestration"
+---
+
+## Overview
+
+Module M13 (Jana) provides a multi-agent orchestration platform with separated engine and UI components. It enables configuration, governance, and runtime orchestration of RAG-enabled conversational assistants.
+
+## M13 Documents
+
+- [M13 - Component Description](m13-component-description.qmd)
+- [M13 - Standalone Module](m13-standalone-module.qmd)
+- [M13 - Platform Module](m13-platform-module.qmd)

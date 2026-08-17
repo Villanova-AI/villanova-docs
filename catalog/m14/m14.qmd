@@ -1,0 +1,13 @@
+﻿---
+title: "M14 - Hybrid Retrieval and RAG"
+---
+
+## Overview
+
+Module M14 (Villanova Agata) defines a hybrid retrieval and grounding layer that combines semantic and lexical retrieval strategies for enterprise RAG pipelines.
+
+## M14 Documents
+
+- [M14 - Component Description](m14-component-description.qmd)
+- [M14 - Standalone Module](m14-standalone-module.qmd)
+- [M14 - Platform Module](m14-platform-module.qmd)

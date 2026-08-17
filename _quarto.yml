@@ -1,27 +1,64 @@
 
 project:
-  type: book
+  type: website
+  output-dir: _site
+  preview:
+    port: 6113
+    browser: false
 
-book:
+website:
   title: "Villanova Documentation"
-  chapters:
-    - index.qmd
-    - part: Architecture
-      chapters:
-        - architecture/overview.qmd
-    - part: Platform
-      chapters:
-        - platform/entando.qmd
-    - part: Catalog
-      chapters:
-        - catalog/overview.qmd
-        - catalog/m2.qmd
-    - part: How-To
-      chapters:
-        - how-to/configure-gpu-target-env.qmd
-        - how-to/create-blueprint.qmd
-        - how-to/create-targetenviroment.qmd
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - href: index.qmd
+        text: Home
+      - section: Architecture
+        contents:
+          - architecture/overview.qmd
+      - section: Platform
+        contents:
+          - platform/entando.qmd
+      - section: Catalog
+        contents:
+          - catalog/overview.qmd
+          - section: M1 - Text Generation
+            contents: catalog/m1/*.qmd
+          - section: M2 - Video Anonymization
+            contents: catalog/m2/*.qmd
+          - section: M3 - Speech Synthesis
+            contents: catalog/m3/*.qmd
+          - section: M4 - Data Augmentation
+            contents: catalog/m4/*.qmd
+          - section: M5 - Anomaly Detection
+            contents: catalog/m5/*.qmd
+          - section: M6 - Recommendation Systems
+            contents: catalog/m6/*.qmd
+          - section: M7 - Natural Language Processing
+            contents: catalog/m7/*.qmd
+          - section: M8 - Time Series Forecasting
+            contents: catalog/m8/*.qmd
+          - section: M9 - Document Summarization
+            contents: catalog/m9/*.qmd
+          - section: M10 - Code Auto-completion
+            contents: catalog/m10/*.qmd
+          - section: M11 - Code Summarization
+            contents: catalog/m11/*.qmd
+          - section: M12 - API Recommendation
+            contents: catalog/m12/*.qmd
+          - section: M13 - AI Agent Orchestration
+            contents: catalog/m13/*.qmd
+          - section: M14 - Hybrid Retrieval and RAG
+            contents: catalog/m14/*.qmd
+          - section: M15 - Retrieval Engine Self-Tuning
+            contents: catalog/m15/*.qmd
+      - section: How-To
+        contents:
+          - how-to/configure-gpu-target-env.qmd
+          - how-to/create-blueprint.qmd
+          - how-to/create-targetenviroment.qmd
 
 format:
-  html: default
-  pdf: default
+  html:
+    number-sections: false
